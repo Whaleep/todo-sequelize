@@ -5,7 +5,7 @@ const db = require('../../models')
 const Todo = db.Todo
 
 router.get('/', (req, res) => {
-  return Todo.findAll({ raw: true, nest: true })
+  return Todo.findAll({ where: { UserId: req.user.id }, raw: true, nest: true })
     .then(todos => res.render('index', { todos }))
     .catch(error => res.status(422).json(error))
 })
