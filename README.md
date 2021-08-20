@@ -23,16 +23,22 @@ npm install
 2. 設定環境變數檔案，將檔案 .env.example 檔名改為 .env。  
 若要使用 facebook login ，則需要先在 [Facebook for Developers](https://developers.facebook.com/) 中建立應用程式，將應用程式編號和密鑰填入 .env，即可使用 facebook login 功能。
 
-3. 新增種子資料
+3. 在 MySQL 伺服器上建立 todo_sequelize 資料庫
 ```
-npm run seed
+drop database if exists todo_sequelize;
+create database todo_sequelize;
+use todo_sequelize;
 ```
-4. 啟動專案
+4. 新增資料表、種子資料
+```
+npx sequelize db:migrate
+npx sequelize db:seed:all
+```
+5. 啟動專案
 ```
 npm run dev
 ```
-
-5. 出現以下訊息後，即可在 http://localhost:3000 開始使用
+6. 出現以下訊息後，即可在 http://localhost:3000 開始使用
 ```
 Express is listening on localhost:3000
 ```
